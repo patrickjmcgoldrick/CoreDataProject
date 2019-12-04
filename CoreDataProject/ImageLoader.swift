@@ -10,6 +10,7 @@ import UIKit
 
 class ImageLoader {
     static let shared = ImageLoader()
+    
     private init() {}
     
     func loadImageInto(imageView: UIImageView, urlString: String) {

@@ -72,6 +72,9 @@ class ViewController: UIViewController {
         readButton.addTarget(self, action: #selector(actionRead), for: .touchUpInside)
         updateButton.addTarget(self, action: #selector(actionUpdate), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(actionDelete), for: .touchUpInside)
+        
+        // load current data
+        actionRead()
     }
     
     private func setupConstraints() {
@@ -136,7 +139,7 @@ class ViewController: UIViewController {
         let sports = CoreDataFetchOps.shared.getAllSports()
         for sport in sports {
             print("\(sport.name!): \(sport.desc!)")
-            print("\t\(sport.imageURL)")
+            print("\t\(String(describing: sport.imageURL))")
         }
         print(sports.count)
         sportsData = sports
