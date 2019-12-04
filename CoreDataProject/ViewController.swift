@@ -97,6 +97,12 @@ class ViewController: UIViewController {
     @objc
     private func actionCreate() {
 
+        let sport0 = SportModel()
+        sport0.name = "Beach Volleyball"
+        sport0.desc = "Beach volleyball is a team sport played by two teams of two players on a sand court divided by a net."
+        sport0.imageURL = nil
+        sport0.imageName = "volleyball"
+
         let sport1 = SportModel()
         sport1.name = "Surfing"
         sport1.desc = "Surfing is a surface water sport in which the wave rider, referred to as a surfer, rides on the forward or face of a moving wave, which usually carries the surfer towards the shore."
@@ -115,6 +121,7 @@ class ViewController: UIViewController {
         sport3.imageURL = nil
         sport3.imageName = "waterskiing"
 
+        CoreDataSaveOps.shared.saveSport(sportObject: sport0)
         CoreDataSaveOps.shared.saveSport(sportObject: sport1)
         CoreDataSaveOps.shared.saveSport(sportObject: sport2)
         CoreDataSaveOps.shared.saveSport(sportObject: sport3)
@@ -158,15 +165,58 @@ extension ViewController: UITableViewDataSource {
         cell.detailTextLabel?.lineBreakMode = .byWordWrapping
         cell.detailTextLabel?.text = sport.desc
         if let imageName = sport.imageName, let imageView = cell.imageView {
-            imageView.contentMode = .scaleAspectFit
+            imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
-            imageView.image = UIImage(named: imageName)
+            let image = UIImage(named: imageName)
+            if let image = image {
+                imageView.image = cropToBounds(image: image, width: 100.0, height: 100.0)
+            }
             if let urlString = sport.imageURL {
                 // load remote image in background
                 ImageLoader.shared.loadImageInto(imageView: imageView, urlString: urlString)
             }
-
         }
         return cell
+    }
+    
+    // from: https://stackoverflow.com/questions/32041420/cropping-image-with-swift-and-put-it-on-center-position
+    func cropToBounds(image: UIImage, width: Double, height: Double) -> UIImage {
+
+        let cgimage = image.cgImage!
+        let contextImage: UIImage = UIImage(cgImage: cgimage)
+        let contextSize: CGSize = contextImage.size
+        var posX: CGFloat = 0.0
+        var posY: CGFloat = 0.0
+        var cgwidth: CGFloat = CGFloat(width)
+        var cgheight: CGFloat = CGFloat(height)
+
+        // See what size is longer and create the center off of that
+        if contextSize.width > contextSize.height {
+            posX = ((contextSize.width - contextSize.height) / 2)
+            posY = 0
+            cgwidth = contextSize.height
+            cgheight = contextSize.height
+        } else {
+            posX = 0
+            posY = ((contextSize.height - contextSize.width) / 2)
+            cgwidth = contextSize.width
+            cgheight = contextSize.width
+        }
+
+        let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
+
+        // Create bitmap image from context using the rect
+        let imageRef: CGImage = cgimage.cropping(to: rect)!
+
+        // Create a new image based on the imageRef and rotate back to the original orientation
+        let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+
+        return image
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 100.0
     }
 }
