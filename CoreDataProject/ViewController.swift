@@ -51,7 +51,10 @@ class ViewController: UIViewController {
         // init Tableview
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 100)
+        
         tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(SportViewCell.self, forCellReuseIdentifier: "SportViewCell")
         
         // add objects to VC view
         view.backgroundColor = .systemTeal
@@ -159,13 +162,14 @@ extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = UITableViewCell(style: .subtitle, reuseIdentifier: nil)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SportViewCell") as? SportViewCell
+            else { return UITableViewCell() }
         
         let sport = sportsData[indexPath.row]
-        cell.textLabel?.text = sport.name
-        cell.detailTextLabel?.lineBreakMode = .byWordWrapping
-        cell.detailTextLabel?.text = sport.desc
-        if let imageName = sport.imageName, let imageView = cell.imageView {
+        cell.titleLabel.text = sport.name
+        cell.detailLabel.text = sport.desc
+        if let imageName = sport.imageName {
+            let imageView = cell.mainImageView
             imageView.contentMode = .scaleAspectFill
             imageView.clipsToBounds = true
             let image = UIImage(named: imageName)
@@ -213,5 +217,11 @@ extension ViewController: UITableViewDataSource {
         let image = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
 
         return image
+    }
+}
+
+extension ViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 116.0
     }
 }
