@@ -10,6 +10,7 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    // MARK: Create UI Objects
     // create UI objects
     var createButton: UIButton = {
         var button = UIButton()
@@ -39,19 +40,24 @@ class ViewController: UIViewController {
         return button
     }()
     
-    let tableView = UITableView()
+    let tableView: UITableView = {
+        let table = UITableView()
+        // init Tableview
+       table.translatesAutoresizingMaskIntoConstraints = false
+
+        return table
+    }()
     
+    // MARK: Init datasource
     // Datasource
     var sportsData = [Sport]()
     
+    // MARK: ViewDidLoad
     // initialize UI Views
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // init Tableview
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 100)
-        
+         
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(SportViewCell.self, forCellReuseIdentifier: "SportViewCell")
@@ -77,6 +83,7 @@ class ViewController: UIViewController {
         actionRead()
     }
     
+    // MARK: - Constraints
     private func setupConstraints() {
         let constraints = [
             // table constraints
@@ -101,6 +108,7 @@ class ViewController: UIViewController {
         NSLayoutConstraint.activate(constraints)
     }
     
+    // MARK: - Button Actions
     @objc
     private func actionCreate() {
 
@@ -127,11 +135,25 @@ class ViewController: UIViewController {
         sport3.desc = "Water skiing is a surface water sport in which an individual is pulled behind a boat or a cable ski installation over a body of water, skimming the surface on two skis or one ski."
         sport3.imageURL = nil
         sport3.imageName = "waterskiing"
+        
+        let sport4 = SportModel()
+        sport4.name = "Baseball"
+        sport4.desc = "Baseball is a bat-and-ball game played between two opposing teams who take turns batting and fielding. The game proceeds when a player on the fielding team, called the pitcher, throws a ball which a player on the batting team tries to hit with a bat."
+        sport4.imageURL = nil
+        sport4.imageName = "baseball"
+
+        let sport5 = SportModel()
+        sport5.name = "Hockey"
+        sport5.desc = "Hockey is a sport in which two teams play against each other by trying to manoeuvre a ball or a puck into the opponent's goal using a hockey stick."
+        sport5.imageURL = nil
+        sport5.imageName = "hockey"
 
         CoreDataSaveOps.shared.saveSport(sportObject: sport0)
-        CoreDataSaveOps.shared.saveSport(sportObject: sport1)
+        CoreDataSaveOps.shared.saveSport(sportObject: sport5)
         CoreDataSaveOps.shared.saveSport(sportObject: sport2)
         CoreDataSaveOps.shared.saveSport(sportObject: sport3)
+        CoreDataSaveOps.shared.saveSport(sportObject: sport4)
+        CoreDataSaveOps.shared.saveSport(sportObject: sport1)
     }
  
     @objc
@@ -157,6 +179,7 @@ class ViewController: UIViewController {
     }
 }
 
+// MARK: - Data Source
 extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -223,6 +246,7 @@ extension ViewController: UITableViewDataSource {
     }
 }
 
+// MARK: Delegate
 extension ViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 116.0

@@ -10,6 +10,7 @@ import UIKit
 
 class SportViewCell: UITableViewCell {
 
+    // MARK: UI Objects
     var titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -30,6 +31,7 @@ class SportViewCell: UITableViewCell {
         return theImageView
     }()
     
+    // MARK: Constructors
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         assertionFailure("This init not implemented.")
@@ -42,6 +44,7 @@ class SportViewCell: UITableViewCell {
         self.addSubview(titleLabel)
         self.addSubview(detailLabel)
         
+        // MARK: - Constraints
         // ImageView Constraints
         _ = NSLayoutConstraint(item: mainImageView, attribute: .leading, relatedBy: .equal, toItem: self, attribute: .leading, multiplier: 1, constant: 8).isActive = true
 

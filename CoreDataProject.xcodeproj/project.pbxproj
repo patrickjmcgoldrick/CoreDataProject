@@ -117,18 +117,17 @@
 		5E527278239745DB00E596DA /* CoreDataProject */ = {
 			isa = PBXGroup;
 			children = (
-				5E5272BC2397997800E596DA /* SportViewCell.swift */,
 				5E5272B9239754DA00E596DA /* CoreData */,
 				5E527279239745DB00E596DA /* AppDelegate.swift */,
 				5E52727B239745DB00E596DA /* SceneDelegate.swift */,
 				5E52727D239745DB00E596DA /* ViewController.swift */,
+				5E5272BC2397997800E596DA /* SportViewCell.swift */,
 				5E5272BA2397845400E596DA /* ImageLoader.swift */,
-				5E52727F239745DB00E596DA /* Main.storyboard */,
 				5E527285239745DE00E596DA /* Assets.xcassets */,
 				5E527287239745DE00E596DA /* LaunchScreen.storyboard */,
+				5E52727F239745DB00E596DA /* Main.storyboard */,
 				5E52728A239745DE00E596DA /* Info.plist */,
 				5E527282239745DB00E596DA /* CoreDataProject.xcdatamodeld */,
-				5E5272B023974C2200E596DA /* SportModel.swift */,
 			);
 			path = CoreDataProject;
 			sourceTree = "<group>";
@@ -154,6 +153,7 @@
 		5E5272B9239754DA00E596DA /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
+				5E5272B023974C2200E596DA /* SportModel.swift */,
 				5E5272AC239749F100E596DA /* CoreDataManager.swift */,
 				5E5272AE23974BC800E596DA /* CoreDataSaveOps.swift */,
 				5E5272B223974CAB00E596DA /* CoreDataFetchOps.swift */,
