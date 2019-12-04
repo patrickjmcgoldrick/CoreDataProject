@@ -22,6 +22,7 @@
 		5E5272B323974CAB00E596DA /* CoreDataFetchOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5272B223974CAB00E596DA /* CoreDataFetchOps.swift */; };
 		5E5272B523974CE100E596DA /* CoreDataDeleteOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5272B423974CE100E596DA /* CoreDataDeleteOps.swift */; };
 		5E5272B723974CFF00E596DA /* CoreDataUpdateOps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5272B623974CFF00E596DA /* CoreDataUpdateOps.swift */; };
+		5E5272BB2397845400E596DA /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E5272BA2397845400E596DA /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,6 +64,7 @@
 		5E5272B223974CAB00E596DA /* CoreDataFetchOps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFetchOps.swift; sourceTree = "<group>"; };
 		5E5272B423974CE100E596DA /* CoreDataDeleteOps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataDeleteOps.swift; sourceTree = "<group>"; };
 		5E5272B623974CFF00E596DA /* CoreDataUpdateOps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataUpdateOps.swift; sourceTree = "<group>"; };
+		5E5272BA2397845400E596DA /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +119,7 @@
 				5E527279239745DB00E596DA /* AppDelegate.swift */,
 				5E52727B239745DB00E596DA /* SceneDelegate.swift */,
 				5E52727D239745DB00E596DA /* ViewController.swift */,
+				5E5272BA2397845400E596DA /* ImageLoader.swift */,
 				5E52727F239745DB00E596DA /* Main.storyboard */,
 				5E527285239745DE00E596DA /* Assets.xcassets */,
 				5E527287239745DE00E596DA /* LaunchScreen.storyboard */,
@@ -314,6 +317,7 @@
 				5E5272AF23974BC800E596DA /* CoreDataSaveOps.swift in Sources */,
 				5E52727E239745DB00E596DA /* ViewController.swift in Sources */,
 				5E5272B523974CE100E596DA /* CoreDataDeleteOps.swift in Sources */,
+				5E5272BB2397845400E596DA /* ImageLoader.swift in Sources */,
 				5E52727A239745DB00E596DA /* AppDelegate.swift in Sources */,
 				5E527284239745DB00E596DA /* CoreDataProject.xcdatamodeld in Sources */,
 				5E5272B123974C2200E596DA /* SportModel.swift in Sources */,

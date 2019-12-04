@@ -157,6 +157,16 @@ extension ViewController: UITableViewDataSource {
         cell.textLabel?.text = sport.name
         cell.detailTextLabel?.lineBreakMode = .byWordWrapping
         cell.detailTextLabel?.text = sport.desc
+        if let imageName = sport.imageName, let imageView = cell.imageView {
+            imageView.contentMode = .scaleAspectFit
+            imageView.clipsToBounds = true
+            imageView.image = UIImage(named: imageName)
+            if let urlString = sport.imageURL {
+                // load remote image in background
+                ImageLoader.shared.loadImageInto(imageView: imageView, urlString: urlString)
+            }
+
+        }
         return cell
     }
 }
