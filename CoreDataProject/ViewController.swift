@@ -47,19 +47,21 @@ class ViewController: UIViewController {
     // initialize UI Views
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // init Tableview
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 100)
         tableView.dataSource = self
         
+        // add objects to VC view
         view.backgroundColor = .systemTeal
         view.addSubview(tableView)
         view.addSubview(createButton)
         view.addSubview(readButton)
         view.addSubview(updateButton)
         view.addSubview(deleteButton)
-
         
+        // constraints
         setupConstraints()
         
         // register Button actions
@@ -67,7 +69,6 @@ class ViewController: UIViewController {
         readButton.addTarget(self, action: #selector(actionRead), for: .touchUpInside)
         updateButton.addTarget(self, action: #selector(actionUpdate), for: .touchUpInside)
         deleteButton.addTarget(self, action: #selector(actionDelete), for: .touchUpInside)
-
     }
     
     private func setupConstraints() {
@@ -183,12 +184,12 @@ extension ViewController: UITableViewDataSource {
     func cropToBounds(image: UIImage, width: Double, height: Double) -> UIImage {
 
         let cgimage = image.cgImage!
-        let contextImage: UIImage = UIImage(cgImage: cgimage)
+        let contextImage = UIImage(cgImage: cgimage)
         let contextSize: CGSize = contextImage.size
         var posX: CGFloat = 0.0
         var posY: CGFloat = 0.0
-        var cgwidth: CGFloat = CGFloat(width)
-        var cgheight: CGFloat = CGFloat(height)
+        var cgwidth = CGFloat(width)
+        var cgheight = CGFloat(height)
 
         // See what size is longer and create the center off of that
         if contextSize.width > contextSize.height {
@@ -203,20 +204,14 @@ extension ViewController: UITableViewDataSource {
             cgheight = contextSize.width
         }
 
-        let rect: CGRect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
+        let rect = CGRect(x: posX, y: posY, width: cgwidth, height: cgheight)
 
         // Create bitmap image from context using the rect
         let imageRef: CGImage = cgimage.cropping(to: rect)!
 
         // Create a new image based on the imageRef and rotate back to the original orientation
-        let image: UIImage = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
+        let image = UIImage(cgImage: imageRef, scale: image.scale, orientation: image.imageOrientation)
 
         return image
-    }
-}
-
-extension ViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100.0
     }
 }
